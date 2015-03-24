@@ -151,7 +151,6 @@ def scanDirectory(path, outfile):
     patent = PatentParser()
     db.createTables('./table.sql')
     directory = listdir(path)
-    count = 1
     output = open('./' + outfile, 'w')
     for filename in directory:
         print('{:010} READ FILE: {}'.format(count, filename))
@@ -161,9 +160,6 @@ def scanDirectory(path, outfile):
         text = sub(regex_str, '', text.lower())
         text = sub('( +)', ' ', text)
         output.write('{}\t{}\n'.format(filename, text))
-        count += 1
-        if count == 6:
-            break
     output.close()
     db.close()
 
