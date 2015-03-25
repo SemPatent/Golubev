@@ -152,6 +152,7 @@ def scanDirectory(path, outfile):
     db.createTables('./table.sql')
     directory = listdir(path)
     output = open('./' + outfile, 'w')
+    count = 0
     for filename in directory:
         print('{:010} READ FILE: {}'.format(count, filename))
         patent.loadFile(path + '/' + filename)
@@ -160,6 +161,7 @@ def scanDirectory(path, outfile):
         text = sub(regex_str, '', text.lower())
         text = sub('( +)', ' ', text)
         output.write('{}\t{}\n'.format(filename, text))
+        count += 1
     output.close()
     db.close()
 
